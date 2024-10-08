@@ -7,7 +7,7 @@ import { selectContacts } from "../../redux/contactsSlice";
 
 const Contact = () => {
   const contact = useSelector(selectContacts);
-  console.log(Contact);
+  
   const dispatch = useDispatch();
   return (
     <>
