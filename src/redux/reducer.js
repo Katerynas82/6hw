@@ -1,13 +1,5 @@
+import { initialState } from "../redux/contactsSlice";
 
-const initialState = {
-  contacts: {
-    items: [],
-  },
-  filters: {
-    name: "",
-  },
-};
-
-export const contactsReducer = (state = initialState, action) => {
+export const contactsReducer = (state = initialState) => {
   return state;
 };

@@ -1,7 +1,9 @@
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { nanoid } from "nanoid";
 import styles from "../ContactForm/ContactForm.module.css";
+import { addContact } from "../../redux/contactsSlice";
+import { useDispatch } from "react-redux";
+import { nanoid } from "nanoid";
 
 const phoneRegExp = /^(\+380|0)\d{9}$/;
 
@@ -18,39 +20,35 @@ const ContactFormSchema = Yup.object().shape({
     .required("Phone number is required"),
 });
 
-const ContactForm = ({ contacts, setContacts }) => {
+const ContactForm = () => {
   const initialValues = {
-    username: "",
+    contactName: "",
     phoneNum: "",
   };
-
-  const handleSubmit = (values, options) => {
-    const newContact = {
-      id: nanoid(),
-      contactName: values.username,
-      number: values.phoneNum,
-    };
-    setContacts([...contacts, newContact]);
+  const dispatch = useDispatch();
+  const onSubmit = (values, options) => {
+   const newContact = { id: nanoid(), contactName: values.contactName, number: values.phoneNum };
+    dispatch(addContact(newContact));
     options.resetForm();
   };
-
+ 
   return (
     <div className={styles.formWrapper}>
       <Formik
         initialValues={initialValues}
-        onSubmit={handleSubmit}
         validationSchema={ContactFormSchema}
+        onSubmit={onSubmit}
       >
         <Form className={styles.form}>
           <label className={styles.label}>
             <span>Name</span>
             <Field
-              name="username"
+              name="contactName"
               className={styles.input}
               placeholder="Add contact name"
             />
             <ErrorMessage
-              name="username"
+              name="contactName"
               component="p"
               className={styles.error}
             />

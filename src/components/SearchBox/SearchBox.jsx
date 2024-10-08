@@ -1,6 +1,9 @@
+import { changeFilter } from "../../redux/filtersSlice";
 import styles from "../ContactForm/ContactForm.module.css";
+import { useDispatch } from "react-redux";
 
-const SearchBox = ({ filter, onFilterChange }) => {
+const SearchBox = () => {
+  const dispatch = useDispatch();
   return (
     <div className={styles.form}>
       <label className={styles.label}>
@@ -8,8 +11,7 @@ const SearchBox = ({ filter, onFilterChange }) => {
         <input
           type="text"
           className={styles.input}
-          value={filter}
-          onChange={onFilterChange}
+           onChange={e=> dispatch(changeFilter(e.target.value))}
           placeholder="Search contact"
         />
       </label>
