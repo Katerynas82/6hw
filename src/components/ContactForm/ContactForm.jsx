@@ -68,7 +68,12 @@ const ContactForm = () => {
               className={styles.error}
             />
           </label>
-          <button type="submit">Add Contact</button>
+          <button
+            type="submit"
+            onClick={() => dispatch(addContact)}
+          >
+            Add Contact
+          </button>
         </Form>
       </Formik>
     </div>
