@@ -70,8 +70,7 @@ const ContactForm = () => {
           </label>
           <button
             type="submit"
-            onClick={() => dispatch(addContact)}
-          >
+                      >
             Add Contact
           </button>
         </Form>

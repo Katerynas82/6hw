@@ -36,9 +36,13 @@ const ContactList = () => {
   const contacts = useSelector(selectContacts);
   const contactName = useSelector(selectNameFilter);
 
-  const filteredData = contacts.filter((contact) =>
-    contact.contactName.toLowerCase().includes(contactName.toLowerCase().trim())
-  );
+  const filteredData = contacts.filter(
+    (contact) =>
+      contact.contactName
+        .toLowerCase()
+        .includes(contactName.toLowerCase().trim()),
+    
+  ); 
 
   return (
     <ul>
