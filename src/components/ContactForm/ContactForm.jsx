@@ -8,7 +8,7 @@ import { nanoid } from "nanoid";
 const phoneRegExp = /^(\+380|0)\d{9}$/;
 
 const ContactFormSchema = Yup.object().shape({
-  username: Yup.string()
+  contactName: Yup.string()
     .min(3, "Too Short! Min 3 symbols.")
     .max(50, "Too Long!")
     .required("Required"),
@@ -23,11 +23,12 @@ const ContactFormSchema = Yup.object().shape({
 const ContactForm = () => {
   const initialValues = {
     contactName: "",
-    phoneNum: "",
+    number: "",
   };
   const dispatch = useDispatch();
   const onSubmit = (values, options) => {
-   const newContact = { id: nanoid(), contactName: values.contactName, number: values.phoneNum };
+   const newContact = { id: nanoid(), contactName: values.contactName, number: values.number };
+   console.log("New contact:", newContact);
     dispatch(addContact(newContact));
     options.resetForm();
   };
@@ -58,19 +59,18 @@ const ContactForm = () => {
             <span>Phone number</span>
             <Field
               type="tel"
-              name="phoneNum"
+              name="number"
               className={styles.input}
               placeholder="Add contact phone"
             />
             <ErrorMessage
-              name="phoneNum"
+              name="number"
               component="p"
               className={styles.error}
             />
           </label>
           <button
-            type="submit"
-                      >
+            type="submit">
             Add Contact
           </button>
         </Form>
